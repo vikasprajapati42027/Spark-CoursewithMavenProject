@@ -11,8 +11,11 @@ object RDDWithcsvFile {
 
     val csvRDD = spark.sparkContext.textFile("src/test/csv123/vikas123.csv")
     csvRDD.foreach(println)
+    val header = csvRDD.first()
 
-
+    //val csvRDDWithoutHeader = csvRDD.filter(line => line ! =header)
+    val csvRDDWithoutHeader = csvRDD.filter(_ !=header)
+    csvRDDWithoutHeader.foreach(println)
 
   }
 
